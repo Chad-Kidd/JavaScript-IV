@@ -16,13 +16,13 @@ class Instructor extends Person {
     constructor(instructorOptions) {
         super(instructorOptions)
         this.specialty = instructorOptions.specialty;
-        this.favLanguage = instructorOptions.favLanguage;
+        this.favSubjects = instructorOptions.favSubjects;
         this.catchPhrase = instructorOptions.catchPhrase;
     }
     grade(student,subject) {
         return `'${student.name} receives a perfect score on ${subject}.`;
     }
-    demo() {
+    demo(subject) {
         `Today we are learning about ${subject}`;
     }
 }
@@ -39,27 +39,27 @@ class Student extends Person {
         this.favSubjects = studentOptions.favSubjects;
     }
     listSubjects() {
-        return `${this.favSubjects}.`
+        return `${this.favSubjects}.`;
     }
     PRAssignment(subject) {
-        return `${this.name} has submitted a PR for ${subject}.`
+        return `${this.name} has submitted a PR for ${subject}.`;
     }
     sprintChallenge(subject) {
-        return `${this.name} has begun Sprint Challenge on ${subject}.`
+        return `${this.name} has begun Sprint Challenge on ${subject}.`;
     }
 }
 //subject passed in as string
 
-class ProjectManager extends Person {
+class ProjectManager extends Instructor {
     constructor(PMOptions) {
         super(PMOptions)
         this.gradClassName = PMOptions.gradClassName;
         this.favInstructor = PMOptions.favInstructor;
     }
-    standUp(name, channel){
+    standUp(channel){
         `${this.name} announces to ${channel}, @channel standy times!​​​​​`;
     }
-    debugsCode(subject){
+    debugsCode(student,subject){
         `${this.name} debugs ${student.name}'s code on ${subject}`;
     }
 }
@@ -77,7 +77,7 @@ const liz_B = new Instructor({
     favSubjects: ["CSS","React","Ternaries","SQL","Node"],
   })
 
-  const leslie = new Student({
+  const leslie = new ProjectManager({
     name: "Leslie Thompson",
     age: 31,
     location: "San Francisco, CA",
@@ -101,4 +101,6 @@ const liz_B = new Instructor({
 console.log(joshk.name);
 console.log(leslie.favSubjects);
 console.log(leslie.previousBackground);
-console.log(liz_B.grade("CSS"));
+console.log(liz_B.grade(joshk,"CSS"));
+console.log(leslie.debugsCode(joshk,"prototypes")); //UGH WHY ARENT MY INSTRUCTOR METHODS WORKING!!!!!??????
+///IM GONNA PULL MY MOHAWK OUT! 
